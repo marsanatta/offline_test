@@ -5,10 +5,17 @@
 
 **Test environments**
 
+machine1:
+
 **Comipler:** Apple LLVM version 6.1.0 (clang-602.0.49) (C++11 supported)
 
 **OS:** OS X Yosemite 10.10.2 
 
+machine2:
+
+**Compiler:** g++ 4.8.4 (c++11 supported)
+
+**OS:** Ubuntu 14.04.2 LTS
 
 # Q1. How to implement poker card-wash function, then pick up 5 cards?
 

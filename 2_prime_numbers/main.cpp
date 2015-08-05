@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include <chrono>
+#include <cstring>
 
 void printPrimes(const int n);
 

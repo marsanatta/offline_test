@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 typedef unsigned long long int ull;
 

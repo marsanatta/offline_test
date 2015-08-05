@@ -2,6 +2,7 @@
 #define CARD_H
 
 #include <string>
+#include <stdexcept>
 
 // maximum kinds of rank and suit
 const int MAX_RANK = 13;

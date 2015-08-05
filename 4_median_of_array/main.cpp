@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cfloat>
+#include <climits>
 
 int partition(int *arr, const int &l, const int &r, const int &pivot);
 void printArray(const int *arr, const int &n);
