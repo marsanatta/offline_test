@@ -55,7 +55,7 @@ void printArray(const int *arr, const int &n) {
 // return the position of pivot after partition
 int partition(int *arr, const int &l, const int &r, const int &pivot)
 {
-    // search for pivot in arr[l..r] and swap it with last element
+    // search for pivot in arr[l..r] and swap it with the last element
     int i;
     for (i = l; i < r; ++i)
         if (arr[i] == pivot)
@@ -100,16 +100,14 @@ int findKthSmallest(int *arr, const int &l, const int &r, const int &k)
 
     // divide sub-arrary[l..r] in groups of size GROUP_NUM (the last group length can be less than GROUP_NUM)
     // calculate median of each groups and store them in median array
-    int median[static_cast<int>(ceil(n / GROUP_NUM))];
+    int const medianNum = static_cast<int>(ceil(n / GROUP_NUM));
+    int median[medianNum];
     int median_i;
     for (median_i = 0; median_i < n / GROUP_NUM; ++median_i)
         median[median_i] = findMedian(arr + l + median_i * GROUP_NUM, GROUP_NUM);
     if (median_i * GROUP_NUM < n) { // last group with elements less than GROUP_NUM
         median[median_i] = findMedian(arr + l + median_i * GROUP_NUM, n % GROUP_NUM); 
-        median_i++;
     }    
-
-    int const medianNum = median_i; // the length of median array
 
     // Find median of all medians recursively
     int medOfMedians;
