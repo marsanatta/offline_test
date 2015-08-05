@@ -269,7 +269,7 @@ function findKthSmallest(array, left, right, k)
 	2. Sort each group, find each group's median and store them in an array median[]
 
 	medianNum = number of medians within median[] array
-	3. find median of medians: medOfMed = findKthSmallest(median[0..medianNum - 1], medianNum - 2) 
+	3. find median of medians: medOfMed = findKthSmallest(median[0..medianNum - 1], medianNum / 2) 
 	note that we don't need to consider odd and even array length cases since this median is used
 	for partition
 	
@@ -277,11 +277,11 @@ function findKthSmallest(array, left, right, k)
 	pos = partition(array, left, right, medOfMed)
   
 	5. judge whether pos is the kth element or recursively find kth element within sub-array
-	if pos = k
+	if pos - left + 1 = k
 		return medOfMed
-	if pos < k
+	if pos - left + 1 < k
 		return findKthSmallest(arr[l..pos-1], left, pos-1, k)
-	if pos > k
+	if pos - left + 1 > k
   	return findKthSmallest(arr[pos+1..r], pos+1, right, k-pos+l-1)
    
 ```

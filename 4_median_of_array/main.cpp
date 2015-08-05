@@ -123,9 +123,9 @@ int findKthSmallest(int *arr, const int &l, const int &r, const int &k)
     int pos = partition(arr, l, r, medOfMedians);
 
     // if the pos is the kth number, return it
-    if (pos - l == k - 1)
+    if (pos - l + 1 == k)
         return arr[pos];
-    if (pos - l > k - 1)  // If position is more than kth, find kth within left sub-array
+    if (pos - l + 1 > k)  // If position is more than kth, find kth within left sub-array
         return findKthSmallest(arr, l, pos - 1, k);
     else                  // If position is less kth, find kth within right sub-array 
         return findKthSmallest(arr, pos + 1, r, k - pos + l - 1);  
