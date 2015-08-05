@@ -228,9 +228,9 @@ the fib[0][0] will be n-th fibonacci value
 ```
 
 ## Complexity
-Time complexity: ```O(log n)```
+Time Complexity: ```O(log n)```
 
-Space complexity: ```O(1)```
+Space Complexity: ```O(1)```
 
 ## Code
 3_fibonacci/main.cpp: ```fibMatrix```, ```matrixPow```, ```matrixMul```
@@ -287,8 +287,8 @@ function findKthSmallest(array, left, right, k)
 ```
 
 ## Complexity
-Time complexity: ```O(n)```
-Space complexity: ```O(1)```
+Time Complexity: ```O(n)```
+Space Complexity: ```O(n)```
 
 ## Code
 4_median_of_array/main.cpp
