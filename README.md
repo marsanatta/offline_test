@@ -274,7 +274,7 @@ function findKthSmallest(array, left, right, k)
 	for partition
 	
 	4. partition array around medOfMed and get its position  
-	pos = partition(arr, n, medOfMed)
+	pos = partition(array, left, right, medOfMed)
   
 	5. judge whether pos is the kth element or recursively find kth element within sub-array
 	if pos = k
