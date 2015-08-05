@@ -94,7 +94,12 @@ C10
 D3
 ```
 
-p.s. the print deck function prints the card vector from the front to the back.
+p.s. 
+The print deck function prints the card vector from the front to the back.
+Therefore, the top of the deck is at the end of print deck output.
+When picking up the cards, it starts from the end of the output.
+
+
 
 # Q2. How to find 2 to 100 prime numbers?
 
