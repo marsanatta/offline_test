@@ -15,7 +15,7 @@ int main()
 void printPrimes(const int n)
 {
     bool prime[n - 1];                  // prime table, prime[x] means integer x + 2 is prime or not 
-    memset(prime, true, sizeof(prime)); // initialize 2..n to true
+    memset(prime, true, sizeof(prime)); // initialize prime table to true
 
     // generate prime table
     int sqrt_n = sqrt(n);
