@@ -159,7 +159,7 @@ Prime numbers from 2 to 100
 # Q3. Given a sequence 1,1,2,3,5,8,13,21,34,55... Please write a function can return the nth value. Please give us at least 3 different solutions.
 
 ## Solution 1: Bottom Up
-Calculate each fibonacci value from 3rd to nth. (1st and 2nd fibonacci value is known as 1)
+Calculate each fibonacci value from 3rd to nth. (1st and 2nd fibonacci value are known as 1)
 
 ```
 if n is 1 or 2 
@@ -248,7 +248,7 @@ Solution 3: Matrix Exponentiation
 ```
 
 p.s. 
-Since maximum unsigned long long is      18,446,744,073,709,551,615 ,
+Since maximum unsigned long long int is      18,446,744,073,709,551,615 ,
 it cannot correctly store 94th fibonacci 19,740,274,219,868,223,167.
 The maximum nth allowed to be entered is 93.
 
