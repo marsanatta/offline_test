@@ -1,5 +1,5 @@
 #ifndef SELECT_ALGORITHM_H
-#define SELECT_ALGORITHM
+#define SELECT_ALGORITHM_H
 
 #include <iostream>
 #include <algorithm>
