@@ -3,15 +3,15 @@
 
 typedef unsigned long long int ull;
 
-ull fibBottomUp(const int n);
-ull fibTopDown(ull *fib, const int n);
-ull fibMatrix(const int n);
-void matrixPow(ull F[2][2], int n);
+ull fibBottomUp(const int &n);
+ull fibTopDown(ull *fib, const int &n);
+ull fibMatrix(const int &n);
+void matrixPow(ull F[2][2], const int &n);
 void matrixMul(ull F[2][2], ull M[2][2]);
 
+// the maximum nth allowed to be entered is 93
 // Since maximum unsigned long long is      18,446,744,073,709,551,615 ,
 // it cannot correctly store 94th fibonacci 19,740,274,219,868,223,167 
-// the maximum nth allowed to be entered is 93
 const int MAX_NTH = 93; 
 
 int main(int argc, const char *argv[])
@@ -46,8 +46,8 @@ int main(int argc, const char *argv[])
     return 0;
 }
 
-// find nth fibonacci with bottom up approach
-ull fibBottomUp(const int n) {
+// Bottom up approach: find nth fibonacci
+ull fibBottomUp(const int &n) {
 
     if (n == 1 || n == 2)
         return 1;
@@ -56,6 +56,7 @@ ull fibBottomUp(const int n) {
     ull second = 1; // 2nd fibonacci is 1
     ull fib;
 
+    // calculated fibonacci sequence from 3-th to n-th
     for (int i = 3; i <= n; ++i) {
         fib = first + second;
         first = second;
@@ -65,8 +66,8 @@ ull fibBottomUp(const int n) {
     return fib;
 }
 
-// find nth fibonacci with top down with memorization approach
-ull fibTopDown(ull *fib, const int n) {
+// Top down with memorization: find nth fibonacci 
+ull fibTopDown(ull *fib, const int &n) {
 
     if (fib[n - 1] != -1) // if fib has already been calculated, return it
         return fib[n - 1];
@@ -77,8 +78,8 @@ ull fibTopDown(ull *fib, const int n) {
     return ret;
 }
 
-// find nth fibonacci with matrix exponentiation approach
-ull fibMatrix(const int n)
+// Matrix exponentiation: find nth fibonacci
+ull fibMatrix(const int &n)
 {
     ull fib[2][2] = {{1,1}, 
                      {1,0}};
@@ -87,8 +88,8 @@ ull fibMatrix(const int n)
 }
 
 // power of the matrix
-// result will be written to the input matrix
-void matrixPow(ull base[2][2], int n)
+// result will be written to the input matrix base
+void matrixPow(ull base[2][2], const int &n)
 {
     if(n == 0 || n == 1)
         return;

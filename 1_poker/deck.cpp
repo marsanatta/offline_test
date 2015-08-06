@@ -12,6 +12,7 @@ void Deck::shuffle() {
 }
 
 // pick up one card at the top of the deck
+// the top of the deck is assumed to be the back of the mCards vector
 Card* Deck::pickOneCard() {
 
     if (!mCards.empty()) {

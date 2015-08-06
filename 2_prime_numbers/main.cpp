@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cstring>
 
-void printPrimes(const int n);
+void printPrimes(const int &n);
 
 int main()
 {
@@ -12,7 +12,8 @@ int main()
     return 0;
 }
 
-void printPrimes(const int n)
+// print primes within 2 to n
+void printPrimes(const int &n)
 {
     bool prime[n - 1];                  // prime table, prime[x] means integer x + 2 is prime or not 
     memset(prime, true, sizeof(prime)); // initialize prime table to true
@@ -24,7 +25,7 @@ void printPrimes(const int n)
         if (prime[i - 2]) { 
             // start from i*i since i*(2~i-1) has already been calculated by smaller primes
             for (int j = i*i; j <= n; j+=i) { 
-                prime[j - 2] = false; // mart the mutiple as "not prime"
+                prime[j - 2] = false; // mark the mutiple as "not prime"
             }
         }
     }

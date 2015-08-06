@@ -58,7 +58,6 @@ else
 **pick up five card**
 
 ```
-To pick up 5 cards from a deck:
 run the pick up one card function 5 times
 ```
 
@@ -66,10 +65,10 @@ run the pick up one card function 5 times
 
 1_poker/deck.cpp: ```Deck::pickOneCard```
 
-1_poker/main.cpp: starts from ```// picking up cards from the deck```
+1_poker/main.cpp: ```pickNCards```
 
 
-### Sample Output
+### Program Output
 
 **Suits:**
 C - Club, H - Heart, D - Diamond, S - Spade
@@ -94,10 +93,9 @@ C10
 D3
 ```
 
-p.s. 
 The print deck function prints the card vector from the front to the back.
 Therefore, the top of the deck is at the end of print deck output.
-When picking up the cards, it starts from the end of the output.
+When picking up the cards from the top of the deck, it starts from the end of the output.
 
 
 
@@ -150,7 +148,7 @@ Space Complexity: ```O(n)```
 ## Code
 2_prime_numbers/main.cpp: ```printPrimes```
 
-## Sample Output
+## Program Output
 ```
 Prime numbers from 2 to 100
 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97
@@ -174,6 +172,7 @@ return f // f is the nth fibonacci value
 ```
 ## Complexity
 Time Complexity: ```O(n)```
+
 Space Complexity: ```O(1)```
 
 ## Code 
@@ -198,6 +197,7 @@ function topdown(fib, n)
 ```
 ## Complexity
 Time Complexity: ```O(n)```
+
 Space Complexity: ```O(n)```
 
 ## Code 
@@ -235,7 +235,7 @@ Space Complexity: ```O(1)```
 ## Code
 3_fibonacci/main.cpp: ```fibMatrix```, ```matrixPow```, ```matrixMul```
 
-## Sample Input/Output
+## Program Input/Output
 ```
 Enter n to find nth fibonacci value: (1 <= n <= 93)
 50
@@ -247,19 +247,19 @@ Solution 3: Matrix Exponentiation
 12586269025
 ```
 
-p.s. 
 Since maximum unsigned long long int is      18,446,744,073,709,551,615 ,
 it cannot correctly store 94th fibonacci 19,740,274,219,868,223,167.
-The maximum nth allowed to be entered is 93.
+**The maximum nth allowed to be entered is 93.**
 
 # Q4. Show us how to figure the medium-number of array (6,38,49,55,11,44,33); and array (11,41,42,43,31,91,81,71,61).
 
-Use median of medians algorithm which find k-th smallest element in an array. If array length N is odd, the median will be (N/2+1)-th smallest element. If array length N is even, the median is the average number of (N/2)-th smallest element and (N/2+1)-th smallest element.
+## Solution 1: Median of Medians
 
-**Median of Medians Algorithm:**
+Use median of medians algorithm which finds k-th smallest element in an array. If array length N is odd, the median will be (N/2+1)-th smallest element. If array length N is even, the median is the average number of (N/2)-th smallest element and (N/2+1)-th smallest element.
+
 
 ```
-function findKthSmallest(array, left, right, k)
+function medianOfMedians(array, left, right, k)
 
 	n = right - left + 1    is the length of the array
   
@@ -269,7 +269,7 @@ function findKthSmallest(array, left, right, k)
 	2. Sort each group, find each group's median and store them in an array median[]
 
 	medianNum = number of medians within median[] array
-	3. find median of medians: medOfMed = findKthSmallest(median[0..medianNum - 1], medianNum / 2) 
+	3. find median of medians: medOfMed = medianOfMedians(median[0..medianNum - 1], medianNum / 2) 
 	note that we don't need to consider odd and even array length cases since this median is used
 	for partition
 	
@@ -280,24 +280,76 @@ function findKthSmallest(array, left, right, k)
 	if pos - left + 1 = k
 		return medOfMed
 	if pos - left + 1 < k
-		return findKthSmallest(arr[l..pos-1], left, pos-1, k)
+		return medianOfMedians(array, left, pos-1, k)
 	if pos - left + 1 > k
-  	return findKthSmallest(arr[pos+1..r], pos+1, right, k-pos+l-1)
+		return medianOfMedians(array, pos+1, right, k-pos+l-1)
    
 ```
 
-## Complexity
+### Complexity
 Time Complexity: ```O(n)```
+
 Space Complexity: ```O(n)```
 
-## Code
-4_median_of_array/main.cpp
+### Code
 
-## Sample Output
+4_median_of_array/main.cpp: ```printMedian```
+
+4_median_of_array/select_algorithm.cpp: ```medianOfMedians```, ```partition```, ```findMedian```
+
+## Solution 2: Quick Select
+
+Use quick select algorithm which finds k-th smallest element in an array. Same with median of medians algorithm. If array length N is odd, the median will be (N/2+1)-th smallest element. If array length N is even, the median is the average number of (N/2)-th smallest element and (N/2+1)-th smallest element.
+
+The idea of quick select is similiar to quick sort. It selects a pivot in each iteration. The difference is when quick select finish partition around the pivot, it compared pivot's position with k-th to determine if the pivot itself is the k-th element or the k-th element is at the left or right sub-arrays. If the k-th element is at the sub-array, it will find the element recursively in the sub-array.
 
 ```
+function quickselect(array, left, right, k)
+	
+	n = right - left + 1     is the length of the array
+	
+	1. randomly select a pivot in array[left..right]
+	
+	2. partition array around pivot and get its position  
+	pos = partition(array, left, right, pivot)
+  
+	3. judge whether pos is the kth element or recursively find kth element within sub-array
+	if pos - left + 1 = k
+		return array[pos]
+	if pos - left + 1 < k
+		return quickselect(array, left, pos-1, k)
+	if pos - left + 1 > k
+		return quickselect(array, pos+1, right, k-pos+l-1)
+```
+
+### Difference Between Quick Select and Median of Medians
+
+The worst case time complexity of median of medians algorithm is O(n), and similiar to quick sort, quick select's worst case time complexity is O(n^2). However, median of medians algorithm does more computation in each recursive function, so the constant of this algorithm is higher than quick select. In addition, the worst case of quick select happens rarely in reality. Therefore, in practical situation, quick select may work better.
+
+The computation time of the two algorithm is shown in the program output. In the test environments, quick select is faster than median of medians algorithm.
+
+### Complexity
+Time Complexity: ```O(n)```, worst case: ```O(n^2)```
+
+Space Complexity: ```O(1)```
+
+### Code
+4_median_of_array/main.cpp: ```printMedian```
+
+4_median_of_array/select_algorithm.cpp: ```quickSelect```, ```partition```
+
+## Program Output
+
+```
+Way1: Median of Medians
 Array: 6 38 49 55 11 44 33
-Median: 38
+Find Median: 38 in 7040 ns
 Array: 11 41 42 43 31 91 81 71 61
-Median: 43
+Find Median: 43 in 981 ns
+
+Way2: Quick Select
+Array: 6 38 49 55 11 44 33
+Find Median: 38 in 2009 ns
+Array: 11 41 42 43 31 91 81 71 61
+Find Median: 43 in 502 ns
 ```
